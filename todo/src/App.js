@@ -17,15 +17,24 @@ function App() {
     setTempTodoName('');
   };
   // console.log('tempTodoName', tempTodoName)
+
+  const toggleTodo = event => {
+    dispatch({ type: 'TOGGLE_TODO', payload: event.id });
+  };
+
+  const clearCompleted = event => {
+    event.preventDefault();
+    dispatch({ type: 'CLEAR_TODO' });
+  };
   return (
     <div className="App">
       <div>
-        {state.todos.map(todo => {
-          return (
-            <p>{todo.item}</p>
-          )
-        })}
-      </div>
+        {state.todos.map(todo => (
+          <div>
+            <p className={`${todo.completed ? 'completed' : 'pending'}`} onClick={() => toggleTodo(todo)}>{todo.item}</p>
+          </div>
+        ))}
+        </div>
         {console.log('state.todos',state.todos)}
 
       <form>
@@ -36,6 +45,7 @@ function App() {
           value={tempTodoName}
         />
         <button onClick={saveNewTodo} value={tempTodoName}>Add TODO</button>
+        <button onClick={clearCompleted} >Clear complete</button>
       </form>
     </div>
   );
