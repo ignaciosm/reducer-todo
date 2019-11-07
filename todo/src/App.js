@@ -31,7 +31,7 @@ function App() {
       <div>
         {state.todos.map(todo => (
           <div>
-            <p className={`${todo.completed ? 'completed' : 'pending'}`} onClick={() => toggleTodo(todo)}>{todo.item}</p>
+            <p className={`${todo.completed ? 'completed' : 'pending'}`} onClick={() => {toggleTodo(todo)}}>{todo.item}</p>
           </div>
         ))}
         </div>
